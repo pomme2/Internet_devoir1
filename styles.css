@@ -5,18 +5,22 @@
     grid-template:
       [header-left] "head head" 30px [header-right]
       [main-left] "nav  main" 1fr [main-right]
-      [footer-left] "nav  foot" 30px [footer-right]
+      [footer-left] "nav  foot" 0px [footer-right]
       / 120px 1fr;
   }
   
   header {
     background-color: lime;
     grid-area: head;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
   }
   
   nav {
     background-color: lightblue;
     grid-area: nav;
+    text-align: center;
   }
   
   main {
@@ -30,11 +34,24 @@ body{
     margin: 0;
 }
 
+form{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 550px;
+    margin-left: 500px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border: 2px solid red;
+    border-radius: 4px;
+    
+}
 
-input:nth-child(odd) {
+input.important:nth-child(even) {
+    background: lightgreen;
+  }
+  
+  input.important:nth-child(odd) {
     background: rgb(234, 142, 142);
   }
   
-  input:nth-child(even) {
-    background: lightgreen;
-  }
+  
