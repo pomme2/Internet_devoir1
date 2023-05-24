@@ -1,57 +1,54 @@
-#page {
-    display: grid;
-    width: 100%;
-    height: 200px;
-    grid-template:
-      [header-left] "head head" 30px [header-right]
-      [main-left] "nav  main" 1fr [main-right]
-      [footer-left] "nav  foot" 0px [footer-right]
-      / 120px 1fr;
-  }
-  
-  header {
-    background-color: lime;
-    grid-area: head;
-    text-align: center;
-    font-size: large;
-    font-weight: bold;
-  }
-  
-  nav {
-    background-color: lightblue;
-    grid-area: nav;
-    text-align: center;
-  }
-  
-  main {
-    background-color: yellow;
-    grid-area: main;
-    text-align: center;
-
-  }
-  
-body{
-    margin: 0;
+body {
+  display: grid;
+  grid-template-areas: 
+      "header header"
+      "nav form-background";
+  grid-template-rows: 50px auto;
+  grid-template-columns: 200px auto;
+  height: 100vh;
+  margin: 0;
+  padding: 0; 
 }
 
-form{
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-right: 550px;
-    margin-left: 500px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    border: 2px solid red;
-    border-radius: 4px;
-    
+header {
+  grid-area: header;
+  background-color: lime;
+  padding: 10px;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
 }
 
-input.important:nth-child(even) {
-    background: lightgreen;
-  }
-  
-  input.important:nth-child(odd) {
-    background: rgb(234, 142, 142);
-  }
-  
-  
+nav {
+  grid-area: nav;
+  background-color: lightblue;
+  padding: 20px;
+  text-align: center;    
+  font-size: large;
+  font-weight: bold;
+}
+
+.form-background{
+  grid-area: form-background;
+  background-color: yellow;
+  text-align: center;
+}
+
+
+.form-container {
+  display: inline-block;
+  background-color: white;
+  border: 2px solid red;
+  margin: 150px;
+  padding: 20px;
+  text-align: center;
+}
+
+.form-container div:nth-child(odd) input {
+  background-color: lightcoral;
+}
+
+.form-container div:nth-child(even) input {
+  background-color: lightgreen;
+}
+

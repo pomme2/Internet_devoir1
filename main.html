@@ -3,56 +3,64 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>My Website</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
+  
   <body>
     
-        <section id="page">
-            <header>En-tete</header>
-            <nav> Barre de Navigation</nav>
-            <main>
+    <header>En-tête</header>
+    <nav>  
+        <a href="#">Accueil</a><br>
+        <a href="#">À propos</a><br>
+        <a href="#">Contact</a><br>
+    </nav>
+    
+    <div class="form-background">
+        <form class="form-container">
+            <h2>Formulaire d'inscription</h2>
 
-                <form> 
-                    <label for="lname">Nom : </label><br>
-                    <input type="text" id="lname" name="lname" class="important" > <br>
+            <div>
+                <label for="lname">Nom:</label><br>
+                <input type="text" id="lname" name="lname" autocomplete="family-name"><br>
+            </div>
 
-                    <label for="fname">Prenom : </label><br>
-                    <input type="text" id="fname" name="fname" class="important"> <br>
+            <div>
+                <label for="fname">Prénom:</label><br>
+                <input type="text" id="fname" name="fname" autocomplete="given-name"><br>
+            </div>
 
-                    <br>
-                      
-                    <label for="email">email:</label> <br>
-                    <input type="email" id="email" name="email" class="important">
-                    
-                    <br> 
-
-                    <br>
+            <div>
+                <label for="email">Courriel:</label><br>
+                <input type="email" id="email" name="email" autocomplete="email"><br>
+            </div>
             
-                      
-                
-                    <label for="birthday"> Date de naissance :</label> <br>
-                    <input type="date" id="birthday" name="date" class="important"> <br>
+            <div>
+                <label for="birthday">Date de naissance:</label><br>
+                <input type="date" id="birthday" name="birthday" autocomplete="bday"><br>
+                <!-- champ output calculant l'âge de la personne une fois la date de naissance entrée -->
+                <p id="age"></p><br>
+            </div>
+            
+            <div>
+                <label for="address">Adresse:</label><br>
+                <!-- À REVOIR! Value de autocomplete à changer! -->
+                <input type="text" id="address" name="address" autocomplete="off"><br>
+            </div>
 
-                    <br>
+            <div>
+                <label for="postalcode">Code postal:</label><br>
+                <input type="text" id="postalcode" name="postalcode" autocomplete="postal-code" maxlength="6" 
+                pattern="^[a-zA-Z0-9]{6}$" title="Veuillez entrer votre code postal à 6 caractères"><br>
+            </div>
+            
+        </form>
+    </div>
 
-                    <label for="adresse">Adresse : </label><br>
-                    <input type="text" id="adresse" name="adresse" class="important"> <br>
+    <script src="index.js"></script>
 
-
-                    <label> Code Postal : </label> <br>
-                    <input type="text" pattern="[0-9]{5}" title="Code Postal 6 characteres" class="important"/>
-
-
-                </form>
-
-
-            </main>
-           
-          </section>
-	<script src="index.js"></script>
   </body>
 </html>
 
