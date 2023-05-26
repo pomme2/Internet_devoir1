@@ -8,5 +8,5 @@ document.getElementById("birthday").addEventListener("change", function() {
         age--;
     }
   
-    document.getElementById("age").textContent = "Âge : " + age;
+    document.getElementById("age_result").textContent = age + " ans";
 });

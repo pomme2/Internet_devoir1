@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulaire Simple">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Website - Part 1</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  
+  <body>
+    
+    <header>En-tête</header>
+    
+    <nav>  
+        <a href="#">Accueil</a><br>
+        <a href="#">À propos</a><br>
+        <a href="#">Contact</a><br>
+    </nav>
+    
+    <div class="form-background">
+
+        <form class="form-container">
+
+            <h2>Formulaire d'inscription</h2>
+
+            <label for="lname">Nom:</label>
+            <input type="text" id="lname" name="lname" autocomplete="family-name">
+
+            <label for="fname">Prénom:</label>
+            <input type="text" id="fname" name="fname" autocomplete="given-name">
+
+            <label for="email">Courriel:</label>
+            <input type="email" id="email" name="email" autocomplete="email">
+
+            <label for="birthday">Date de naissance:</label>
+            <input type="date" id="birthday" name="birthday" autocomplete="bday">
+
+            <p id="age">Âge :</p>
+            <!-- champ output calculant l'âge de la personne une fois la date de naissance entrée -->
+            <p id="age_result"></p>
+
+            <label for="address">Adresse:</label>
+            <!-- À REVOIR! Value de autocomplete à changer! -->
+            <input type="text" id="address" name="address" autocomplete="off">
+
+            <label for="postalcode">Code postal:</label>
+            <input type="text" id="postalcode" name="postalcode" autocomplete="postal-code" maxlength="6" 
+            pattern="^[a-zA-Z0-9]{6}$" title="Veuillez entrer votre code postal à 6 caractères">
+
+        </form>
+
+    </div>
+
+    <script src="agecalculator.js"></script>
+
+  </body>
+</html>
+
+
