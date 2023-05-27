@@ -1,12 +1,16 @@
-document.getElementById("birthday").addEventListener("change", function() {
-    var birthday = new Date(this.value);
+function calculateAge(birthdayValue) {
+    var birthday = new Date(birthdayValue);
     var today = new Date();
     var age = today.getFullYear() - birthday.getFullYear();
-    var m = today.getMonth() - birthday.getMonth();
+    var month_diff = today.getMonth() - birthday.getMonth();
   
-    if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+    if (month_diff < 0 || (month_diff === 0 && today.getDate() < birthday.getDate())) {
         age--;
     }
-  
+    return age;
+}
+
+document.getElementById("birthday").addEventListener("change", function() {
+    var age = calculateAge(this.value);
     document.getElementById("age_result").textContent = age + " ans";
 });
