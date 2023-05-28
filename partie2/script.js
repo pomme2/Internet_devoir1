@@ -1,62 +1,90 @@
-function resetInputAndCloseModal() {
-  document.getElementById("nameInput").value = "";
-  $("#exampleModal").modal("hide");
-}
-
 function addToQueue() {
-  const name = document.getElementById("nameInput").value.trim();
-  if (name) {
-      createListItem(name);
-      resetInputAndCloseModal();
-  } else {
-      alert("Veuillez entrer un nom!");
+  let nameInput = document.getElementById("nameInput");
+  let queue = document.getElementById("queue");
+  if(nameInput.value.trim() !== "") {
+      let userItem = document.createElement("li");
+      userItem.classList.add("list-group-item", "d-flex", "justify-content-between");
+
+      let userText = document.createElement("span");
+      userText.textContent = nameInput.value;
+
+      let buttonGroup = document.createElement("div");
+
+      let commentButton = document.createElement("button");
+      commentButton.classList.add("btn", "btn-info", "comment-btn", "me-2");
+      commentButton.textContent = "Commenter";
+      commentButton.setAttribute("data-bs-toggle", "modal");
+      commentButton.setAttribute("data-bs-target", "#commentModal");
+      commentButton.addEventListener("click", function() {
+          window.currentUserItem = userItem;
+      });
+
+      let deleteButton = document.createElement("button");
+      deleteButton.classList.add("btn", "btn-danger", "delete-btn");
+      deleteButton.textContent = "X";
+      deleteButton.setAttribute("data-bs-toggle", "modal");
+      deleteButton.setAttribute("data-bs-target", "#deleteModal");
+      deleteButton.addEventListener("click", function() {
+          window.currentUserItem = userItem;
+      });
+
+      buttonGroup.appendChild(commentButton);
+      buttonGroup.appendChild(deleteButton);
+
+      userItem.appendChild(userText);
+      userItem.appendChild(buttonGroup);
+
+      queue.appendChild(userItem);
+
+      nameInput.value = "";
+
+      let addUserModal = bootstrap.Modal.getInstance(document.getElementById("addModal"));
+      addUserModal.hide();
   }
 }
 
-function createListItem(name) {
-  const li = document.createElement("li");
-  li.classList.add("list-group-item", "d-flex", "justify-content-between");
 
-  const span = document.createElement("span");
-  span.textContent = name;
+function updateComment() {
+  let commentInput = document.getElementById("commentInput");
+  let comment = commentInput.value.trim();
 
-  const div = document.createElement("div");
+  if (comment !== "") {
+      if (window.currentUserItem) {
+          let existingComment = window.currentUserItem.querySelector(".user-comment");
 
-  const commentButton = document.createElement("button");
-  commentButton.classList.add("btn", "btn-info", "comment-btn", "me-2");
-  commentButton.textContent = "Commenter";
-  commentButton.addEventListener("click", function() {
-    const comment = prompt("Veuillez entrer votre commentaire :");
-    if(comment) span.textContent = name + " - " + comment;
-  });
-
-  const deleteButton = document.createElement("button");
-  deleteButton.classList.add("btn", "btn-danger", "delete-btn");
-  deleteButton.textContent = "X";
-  deleteButton.addEventListener("click", function() {
-    li.remove();
-  });
-
-  div.appendChild(commentButton);
-  div.appendChild(deleteButton);
-
-  li.appendChild(span);
-  li.appendChild(div);
-
-  document.getElementById("queue").appendChild(li);
+          // Si un commentaire existe, modifier
+          if (existingComment) {
+              existingComment.textContent = `"${comment}"`;
+          } else {
+              let commentSpan = document.createElement("span");
+              commentSpan.classList.add("user-comment", "ms-2");
+              commentSpan.textContent = `"${comment}"`;
+              window.currentUserItem.insertBefore(commentSpan, window.currentUserItem.children[1]);
+          }
+      }
+      commentInput.value = "";
+      let commentModal = bootstrap.Modal.getInstance(document.getElementById("commentModal"));
+      commentModal.hide();
+  }
 }
 
-// Ajout des event listeners pour les éléments existants
-document.querySelectorAll(".comment-btn").forEach((button) => {
-button.addEventListener("click", function() {
-  const name = this.parentNode.parentNode.querySelector("span").textContent;
-  const comment = prompt("Veuillez entrer votre commentaire :");
-  if(comment) this.parentNode.parentNode.querySelector("span").textContent = name + " - " + comment;
-});
-});
+function selectUserForComment(userItem) {
+  window.currentUserItem = userItem;
+  let commentModal = bootstrap.Modal.getInstance(document.getElementById("commentModal"));
+  commentModal.show();
+}
 
-document.querySelectorAll(".delete-btn").forEach((button) => {
-button.addEventListener("click", function() {
-  this.parentNode.parentNode.remove();
-});
-});
+let commentButtons = document.getElementsByClassName("comment-btn");
+for (let i = 0; i < commentButtons.length; i++) {
+  commentButtons[i].addEventListener("click", function() {
+      let userItem = this.closest(".list-group-item");
+      selectUserForComment(userItem);
+  });
+}
+
+function deleteItem() {
+  window.currentUserItem.remove();
+  let deleteUserModal = bootstrap.Modal.getInstance(document.getElementById("deleteModal"));
+  deleteUserModal.hide();
+}
+document.getElementById("confirmDeleteButton").addEventListener("click", deleteItem);
