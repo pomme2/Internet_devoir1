@@ -1,3 +1,11 @@
 .list-group-item {
   border: 1px solid black;
 }
+h1{
+text-align: center;
+}
+h2{
+  text-align: right;
+  padding-right: 200px;
+  font-size: 22px;
+}
