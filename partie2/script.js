@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  let count = 0; // Utilisé pour créer un identifiant unique pour chaque bouton "Commenter"
+  let count = 0;
 
   // Ajouter un utilisateur à la file d'attente
   $("#addModal .btn-primary").click(function () {
@@ -8,8 +8,6 @@ $(document).ready(function () {
           alert('Veuillez entrer votre nom.');
           return;
       }
-
-      // Incrémenter le compteur et utiliser sa valeur pour l'identifiant du bouton "Commenter"
       count++;
 
       var newUser = $("<li class='list-group-item d-flex justify-content-between align-items-center'>"
@@ -36,7 +34,7 @@ $(document).ready(function () {
       let id = $(this).data('id');
       let existingComment = $("#comment-" + id).text();
       $("#commentInput").val(existingComment.replace(/"/g, ''));
-      $("#commentModal .btn-primary").data('id', id); // Stocker l'ID sur le bouton "Ajouter/Modifier" pour l'utiliser plus tard
+      $("#commentModal .btn-primary").data('id', id); 
   });
 
   // Ajouter ou modifier un commentaire
